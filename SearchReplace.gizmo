@@ -1,0 +1,24 @@
+#! C:/Program Files/Nuke10.5v4/nuke-10.5.4.dll -nx
+version 10.5 v4
+Gizmo {
+ addUserKnob {20 Find_Replace}
+ addUserKnob {2 file_folder}
+ addUserKnob {2 search}
+ search search
+ addUserKnob {2 replace}
+ replace replace
+ addUserKnob {22 execute T "import nuke\nimport os\nimport sys\nimport glob\nimport pickle\n\nnodeReplace = nuke.thisNode()\n\nfolder = nodeReplace.knob(\"file_folder\").getValue()\nsearch = nodeReplace.knob(\"search\").getValue()\nreplace = nodeReplace.knob(\"replace\").getValue()\n\nprint (folder)\nprint (search)\nprint (replace)\n\n\nf = glob.glob(folder+\"*.*\")\n\nfor i in f:\n    print (\"caminho\")\n    print (i)\n\n\nfor i in f:\n    dataOpen = open(i,\"rb\")\n    conteudo = \"\".join(dataOpen)\n\n    dataOpen.close()\n\n    conteudo = conteudo.replace(search, replace)\n                \n    dataWrite = open(i, \"wt\")\n    dataWrite.write(conteudo)\n    \n    dataWrite.close()" +STARTLINE}
+ addUserKnob {20 About}
+ addUserKnob {26 about l "" +STARTLINE T "Eduardo Brandao\nwww.bosonpost.com.br"}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 0
+ }
+ Output {
+  name Output1
+  xpos 0
+  ypos 300
+ }
+end_group
